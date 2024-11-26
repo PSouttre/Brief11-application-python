@@ -1,31 +1,17 @@
-import csv 
-import numpy as np 
-import pandas as pd 
+import streamlit as st
+import requests
 
-df = pd.read_csv('france_travail.csv', delimiter = ',' , encoding = 'utf-8')
+# URL de l'API Flask
+api_url = 'http://localhost:5000/api/data'
 
-###################################################################################################################
-###################################################################################################################
-#################################### Information sur les colonnes #################################################
-###################################################################################################################
-###################################################################################################################
-#df1 = df
-#df1.info()
-#df1['romeCode'].unique()
-#df1.columns()
-#df1.head(5)
-###################################################################################################################
-###################################################################################################################
-#################################### Trier les donnees avec pandas ################################################
-###################################################################################################################
-###################################################################################################################
+st.title('Interface Streamlit')
 
-df.drop('formations', axis = 1)
-df.drop('agence_telephone', axis=1)
-df.drop('entreprise_logo', axis = 1)
-print(df['romeCode'].unique())
-print(df.isnull().sum())
-print(df.head(5))
-print(df['typeContrat'].unique())
-df[df['typeContrat']== "CDI"].drop()
-print(df)
+# Requête à l'API Flask
+response = requests.get(api_url)
+
+if response.status_code == 200:
+    data = response.json()
+    st.write(f"Nom: {data.get('nom')}")
+    st.write(f"Âge: {data.get('age')}")
+else:
+    st.write("Erreur lors de la récupération des données")
