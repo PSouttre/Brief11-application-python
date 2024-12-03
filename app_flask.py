@@ -5,7 +5,6 @@ import requests
 
 app = Flask(__name__)
 
-db_uri = "mongodb+srv://Yildirim:Yildirim31@cluster0.4ij4k.mongodb.net/"
 client = MongoClient(db_uri)
 
 @app.route('/api/data')
