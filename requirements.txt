@@ -1,0 +1,9 @@
+requests
+pandas
+Flask
+urllib3
+SQLAlchemy
+streamlit
+matplotlib
+api-offres-emploi
+psycopg2

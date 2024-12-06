@@ -1,0 +1,64 @@
+version: '3.5'
+
+services:
+  web:
+    build:
+      context: web
+    volumes:
+     - ./web:/app
+    ports:
+     - "5002:8505"
+    networks:
+      - postgres
+  
+  api:
+    build:
+      context: api
+    volumes:
+     - ./api:/app
+    ports:
+     - "5001:5000"
+    networks:
+      - postgres
+  
+
+
+
+  postgres:
+    container_name: postgres_container
+    image: postgres
+    environment:
+      POSTGRES_USER: PS
+      POSTGRES_PASSWORD: Password
+      PGDATA: /data/postgres
+    volumes:
+       - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - postgres
+    restart: unless-stopped
+  
+  pgadmin:
+    container_name: pgadmin_container
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: peggy.souttre@fabeon.fr
+      PGADMIN_DEFAULT_PASSWORD: Password
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+       - pgadmin:/var/lib/pgadmin
+
+    ports:
+      - "${PGADMIN_PORT:-5050}:80"
+    networks:
+      - postgres
+    restart: unless-stopped
+
+networks:
+  postgres:
+    driver: bridge
+
+volumes:
+    postgres:
+    pgadmin:
