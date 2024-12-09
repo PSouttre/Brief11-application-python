@@ -60,17 +60,6 @@ else:
 # Initialisation de final_df avec filtered_df
 final_df = filtered_df    
 
-# Filtre par Titre de Poste 
-#titre_poste = st.sidebar.selectbox ( 
-#    'Sélectionner le titre de poste', 
-#    options=['Tous'] + sorted(list(final_df['intitule'].unique())), 
-#    index = 0,
-#    key="selectbox_titre"
-#) 
-
-#if titre_poste != 'Tous':
-#    final_df = final_df[final_df['intitule'] == titre_poste]
-
 
 # Filtre par Lieu de Travail
 lieuTravail = st.sidebar.selectbox(
@@ -106,30 +95,13 @@ experienceLibelle = st.sidebar.selectbox(
 if experienceLibelle != 'Tous':
     final_df = final_df[final_df['experienceLibelle'] == experienceLibelle]
 
-# Mettre à jour la liste des intitulés dans le selectbox en fonction des données filtrées
-#titre_poste = st.sidebar.selectbox(
-#    'Sélectionner le titre de poste',
-#    options=['Tous'] + list(final_df['intitule'].unique()),
-#    key = "selectbox_poste"  # Ajouter 'Tous' pour voir tous les postes
-#)
 
 # Afficher les données filtrées 
 st.write('Données Filtrées', final_df)
 
 ##########################################################################################################################
-# Bouton de mise à jour des données
-##########################################################################################################################
-
-# Ajouter le bouton de téléchargement 
-
-
-##########################################################################################################################
 # Graphes
 ##########################################################################################################################
-
-# Evolution du nombre d'offres tech de 2020 à 2023
-
-
 
 
 ################################## Repartition des offres selon le type de contrat #########################################"
@@ -168,9 +140,6 @@ def pie_chart(final_df, lieuTravail):
     if lieuTravail != 'Tous':
         title += f" pour le département {lieuTravail}"
 
-    # Si un lieu de travail est sélectionné (autre que 'Tous')
-    #if titre_poste != 'Tous':
-    #    title += f" pour le poste {titre_poste}"
 
     # Définir le titre du graphique
     plt.title(title, fontsize = 5, pad = 20)
@@ -220,7 +189,10 @@ ax.bar(intitule_labels, rome_counts.values, color='#66b3ff')
 ax.set_xlabel('Intitulé du poste selon code ROME', fontsize=12)
 ax.set_ylabel('Nombre d\'offres', fontsize=12)
 ax.set_title('Nombre d\'offres par Code ROME', fontsize=14)
-ax.tick_params(axis='x', rotation=45)  # Rotation des labels des abscisses pour éviter le chevauchement
+#ax.tick_params(axis='x', rotation=45)  # Rotation des labels des abscisses pour éviter le chevauchement
+
+# Rotation et alignement des labels des abscisses 
+ax.set_xticklabels(intitule_labels, rotation=45, ha='right')
 
 # Affichage du graphique
 plt.tight_layout()  # Permet d'éviter le chevauchement des éléments
@@ -229,7 +201,6 @@ st.pyplot(fig)
 
 
 
-############################# Compétences les plus demandées ###########################################
 
 
 

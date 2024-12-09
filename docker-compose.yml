@@ -43,7 +43,7 @@ services:
     container_name: pgadmin_container
     image: dpage/pgadmin4
     environment:
-      PGADMIN_DEFAULT_EMAIL: peggy.souttre@fabeon.fr
+      PGADMIN_DEFAULT_EMAIL: adresse_email@email.fr
       PGADMIN_DEFAULT_PASSWORD: Password
       PGADMIN_CONFIG_SERVER_MODE: 'False'
     volumes:

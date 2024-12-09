@@ -135,7 +135,6 @@ def get_data():
     new_df[['departement', 'Ville']] = new_df['lieuTravail_libelle'].str.split('-', expand=True, n=1)
     nouvel_ordre = ['intitule', 'description', 'dateCreation', 'dateActualisation','lieuTravail_libelle', 'departement', 'Ville', 'lieuTravail_latitude', 'lieuTravail_longitude','romeCode', 'romeLibelle', 'typeContrat', 'experienceLibelle','alternance', 'codeNAF']
     new_df = new_df[nouvel_ordre]
-    print(new_df.dtypes)
 
     # Sauvegarde dans la base
     if_exists = 'replace'
