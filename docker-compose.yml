@@ -24,8 +24,8 @@ services:
     container_name: postgres_container
     image: postgres
     environment:
-      POSTGRES_USER: Yildirim
-      POSTGRES_PASSWORD: Yildirim31
+      POSTGRES_USER: USERNAME
+      POSTGRES_PASSWORD: PASSWORD
       PGDATA: /data/postgres
     volumes:
        - postgres:/data/postgres
@@ -39,8 +39,8 @@ services:
     container_name: pgadmin_container
     image: dpage/pgadmin4
     environment:
-      PGADMIN_DEFAULT_EMAIL: azrtpiol@gmail.com
-      PGADMIN_DEFAULT_PASSWORD: Yildirim31
+      PGADMIN_DEFAULT_EMAIL: email@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: PASSWORD
       PGADMIN_CONFIG_SERVER_MODE: 'False'
     volumes:
        - pgadmin:/var/lib/pgadmin
